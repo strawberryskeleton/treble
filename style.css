@@ -6,3 +6,38 @@
     padding: 0;
     box-sizing: border-box;
 }
+
+
+body {
+    width: 100%;
+    height: 100vh;
+    overflow: hidden;
+
+    display: flex;
+    flex-direction: column;
+
+    background-color: cornflowerblue;
+}
+
+
+
+footer {
+    width: 100%;
+    height: 1.5rem;
+    background-color: cadetblue;
+}
+
+
+main {
+    width: 100%;
+    flex-grow: 1;
+
+    background-color: cornflowerblue;
+}
+
+
+#visualizer {
+    width: 100%;
+    height: 100%;
+    background-color: navajowhite;
+}
