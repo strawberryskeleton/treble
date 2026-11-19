@@ -24,8 +24,8 @@ async function setup () {
 }
 
 function draw () {
-    background(0)
-    // clear()
+    // background(0)
+    clear()
     stroke(255)
     strokeWeight(4)
     noFill()
@@ -47,7 +47,7 @@ function draw () {
     }
     let amp = lowBins > 0 ? sum / lowBins : 0
     let scaledAmp = amp * 1000
-    console.log(scaledAmp)
+    // console.log(scaledAmp)
 
     let wave = fft.waveform()
 
@@ -131,5 +131,12 @@ class Particle {
         noStroke()
         fill(this.color)
         ellipse(this.pos.x, this.pos.y, this.w)
+    }
+}
+
+
+function windowResized() {
+    if (container) {
+        resizeCanvas(container.clientWidth, container.clientHeight)
     }
 }
