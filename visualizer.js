@@ -1,6 +1,7 @@
 let container;
 let song;
 let fft;
+let particles = [];
 
 // function preload () {
 //     song = loadSound('./assets/audio/sunflower_postMalone.mp3')
@@ -18,13 +19,15 @@ async function setup () {
     // frameRate(30)
     fft = new p5.FFT()
     fft.setInput(song)
+
+    noLoop()
 }
 
 function draw () {
     background(0)
     // clear()
     stroke(255)
-    // strokeWeight(2)
+    strokeWeight(3)
     noFill()
 
     translate(width / 2, height / 2)
@@ -53,6 +56,20 @@ function draw () {
         endShape()
     }
 
+
+    let p = new Particle()
+    particles.push(p)
+
+    for (let i = particles.length - 1; i >= 0; i--) {
+        if (!particles[i].edges()) {
+            particles[i].update()
+            particles[i].show()
+        } 
+        else {
+            particles.splice(i, 1)
+        }
+    }
+
 }
 
 function mouseClicked () {
@@ -63,5 +80,38 @@ function mouseClicked () {
     else {
         song.play()
         loop()
+    }
+}
+
+
+class Particle {
+    constructor () {
+        this.pos = p5.Vector.random2D().mult(250)
+        this.vel = createVector(0, 0)
+        this.acc = this.pos.copy().mult(random(0.0001, 0.00001))
+
+        this.w = random(3, 5)
+        this.color = [random(200, 255), random(200, 255), random(200, 255)]
+    }
+
+    update () {
+        this.vel.add(this.acc)
+        this.pos.add(this.vel)
+    }
+
+    edges () {
+        if (this.pos.x < -width / 2 || this.pos.x > width / 2 ||
+            this.pos.y < -height / 2 || this.pos.y > height / 2) {
+            return true
+        }
+        else {
+            return false
+        }
+    }
+
+    show () {
+        noStroke()
+        fill(this.color)
+        ellipse(this.pos.x, this.pos.y, this.w)
     }
 }
