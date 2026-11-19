@@ -14,7 +14,7 @@ async function setup () {
     canvas.parent('visualizer')
     angleMode(DEGREES)
 
-    song = await loadSound('./assets/audio/sunflower_postMalone.mp3')
+    song = await loadSound('./assets/audio/gta_ringtone.mp3')
 
     // frameRate(30)
     fft = new p5.FFT()
@@ -27,7 +27,7 @@ function draw () {
     background(0)
     // clear()
     stroke(255)
-    strokeWeight(3)
+    strokeWeight(4)
     noFill()
 
     translate(width / 2, height / 2)
@@ -36,13 +36,24 @@ function draw () {
     // ellipse(width / 2, height / 2, 100, 100)
 
     // fft.analyze()
-    // amp = fft.getEnergy(20, 200)
+    // let amp = fft.getEnergy(20, 200)
+    let spectrum = fft.analyze()
+
+    // Average the first few low-frequency bins as a bass/energy level
+    let lowBins = min(20, spectrum.length)
+    let sum = 0
+    for (let i = 0; i < lowBins; i++) {
+        sum += spectrum[i]
+    }
+    let amp = lowBins > 0 ? sum / lowBins : 0
+    let scaledAmp = amp * 1000
+    console.log(scaledAmp)
 
     let wave = fft.waveform()
 
     for (let t = -1; t <= 1; t += 2) {
         beginShape()
-        for (let i = 0; i <= 180; i += 0.5) {
+        for (let i = 0; i <= 180; i += 2) {
             let index = floor(map(i, 0, 180, 0, wave.length - 1))
 
             let r = map(wave[index], -1, 1, 150, 350)
@@ -62,7 +73,8 @@ function draw () {
 
     for (let i = particles.length - 1; i >= 0; i--) {
         if (!particles[i].edges()) {
-            particles[i].update()
+            particles[i].update(scaledAmp > 5)
+            // particles[i].update()
             particles[i].show()
         } 
         else {
@@ -94,9 +106,15 @@ class Particle {
         this.color = [random(200, 255), random(200, 255), random(200, 255)]
     }
 
-    update () {
+    update (cond) {
         this.vel.add(this.acc)
         this.pos.add(this.vel)
+
+        if (cond) {
+            this.pos.add(this.vel)
+            // this.pos.add(this.vel)
+            // this.pos.add(this.vel)
+        }
     }
 
     edges () {
