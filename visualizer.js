@@ -84,16 +84,16 @@ function draw () {
 
 }
 
-function mouseClicked () {
-    if (song.isPlaying()) {
-        song.pause()
-        noLoop()
-    }
-    else {
-        song.play()
-        loop()
-    }
-}
+// function mouseClicked () {
+//     if (song.isPlaying()) {
+//         song.pause()
+//         noLoop()
+//     }
+//     else {
+//         song.play()
+//         loop()
+//     }
+// }
 
 
 class Particle {
@@ -138,5 +138,47 @@ class Particle {
 function windowResized() {
     if (container) {
         resizeCanvas(container.clientWidth, container.clientHeight)
+    }
+}
+
+
+
+window.visualizerAudio = {
+    play() {
+        if (!song) {
+            return
+        }
+
+        userStartAudio()
+        
+        if(!song.isPlaying()) {
+            song.play()
+            loop()
+        }
+    },
+
+    pause() {
+        if (!song) return
+
+        if(song.isPlaying()) {
+            song.pause()
+            noLoop()
+        }
+
+    },
+    
+    toggle () {
+        if (!song) return
+
+        if (song.isPlaying()) {
+            this.pause()
+        }
+        else {
+            this.play()
+        }
+    },
+
+    isPlaying () {
+        return Boolean(song && song.isPlaying())
     }
 }

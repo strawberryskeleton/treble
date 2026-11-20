@@ -7,8 +7,13 @@ const playlistContainer = document.getElementById('playlist')
 console.log(playbackBtn)
 console.log(playlistToggle)
 
-let isPlaying = false
+// let isPlaying = false
 playbackBtn.addEventListener('click', () => {
+
+    if(!window.visualizerAudio) return
+
+    window.visualizerAudio.toggle()
+    isPlaying = window.visualizerAudio.isPlaying()
 
     if (isPlaying) {
         playbackBtn.innerHTML = `<i class="fa-solid fa-pause"></i>`
