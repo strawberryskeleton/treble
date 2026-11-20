@@ -49,13 +49,49 @@ main {
 }
 
 
-#controlMenu {
+#control-menu {
     position: absolute;
     top: 1rem;
     right: 1rem;
     z-index: 100;
 
-    width: 5rem;
-    height: 2rem;
-    background-color: lightcoral ;
+    width: 8rem;
+    height: 3.5rem;
+    background-color: lightcoral;
+    font-size: 2rem;
+    border-radius: 8px;
+
+    display: flex;
+    justify-content: space-evenly;
+    align-items: center;
+}
+
+#control-menu span {
+    width: 2rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    /* background-color: cornflowerblue; */
+}
+
+#control-menu i:hover {
+    color: blueviolet;
+}
+
+
+#playlist {
+    position: absolute;
+    top: 5rem;
+    right: 1rem;
+    z-index: 100;
+    overflow-y: scroll;
+
+    width: 20rem;
+    height: 30rem;
+    background-color: cadetblue;
+    border-radius: 8px;
+
+    display: flex;
+
+    display: none;
 }
