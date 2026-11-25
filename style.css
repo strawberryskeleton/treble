@@ -17,7 +17,7 @@ body {
     /* display: flex; */
     /* flex-direction: column; */
     
-    background-color: cornflowerblue;
+    /* background-color: cornflowerblue; */
     font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
 }
 
@@ -45,9 +45,9 @@ main {
 #visualizer {
     width: 100%;
     height: 100%;
-    background-color: navajowhite;
+    /* background-color: navajowhite; */
     position: relative;
-    z-index: 1;
+    z-index: 10;
 }
 
 
@@ -162,3 +162,42 @@ main {
 
     flex-shrink: 0;
 }
+
+
+#song-info {
+    width: 30rem;
+    height: 30rem;
+    border-radius: 50%;
+    overflow: hidden;
+
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    z-index: 1;
+    transform: translate(-50%, -50%);
+    background-color: cornflowerblue;
+
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 2rem;
+}
+
+/*👉#song-info .song-album {
+    width: 15rem;
+    height: 15rem;  
+    overflow: hidden;
+}
+
+#song-info .song-album img {
+    width: 100%;
+    height: 100%;
+}
+
+#song-info .song-text {
+    text-align: left;
+    width: 15rem;
+    ➡ background-color: cyan; ⬅
+}
+👈*/

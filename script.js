@@ -1,5 +1,4 @@
 
-
 const playbackBtn = document.getElementById('playback-btn')
 const playlistToggle = document.getElementById('playlist-toggle')
 const playlistContainer = document.getElementById('playlist')
@@ -35,4 +34,41 @@ playlistToggle.addEventListener('click', () => {
         playlist.style.display = 'flex'
         playlistTogge_isOpen = true
     }
+})
+
+
+const songs = document.querySelectorAll('.song')
+const visualizerDiv = document.getElementById('visualizer')
+const main = document.querySelector('main')
+const songInfoDiv = document.getElementById('song-info')
+
+const song_details = {
+    song1: {
+        title: "Sunflower", 
+        artists: "Post Malone, Swae Lee",
+        track: "./assets/audio/sunflower_postMalone.mp3",
+        album_cover: "./assets/album_covers/sunflower_postMalone.jpg",
+        bg: "./assets/bg/sunflower_postMalone.jpg"
+    },
+    song2: {
+        title: "test", 
+        artists: "Post Malone, Swae Lee",
+        track: "./assets/audio/gta_ringtone.mp3",
+        album_cover: "./assets/album_covers/album2.jpg",
+        bg: "./assets/bg/sunflower_postMalone.jpg"
+    }
+}
+
+
+songs.forEach((song) => {
+    song.addEventListener('click', () => {
+        let id = song.getAttribute('id')
+        let details = song_details[id]
+        console.log(id)
+
+        main.style.backgroundImage = `url('${details.bg}')`
+        main.style.backgroundSize = `cover`
+
+        songInfoDiv.innerHTML = `<img src="${details.album_cover}" alt="">`
+    })
 })
