@@ -24,15 +24,15 @@ playbackBtn.addEventListener('click', () => {
     }
 })
 
-let playlistTogge_isOpen = false
+let playlistToggel_isOpen = false
 playlistToggle.addEventListener('click', () => {
-    if (playlistTogge_isOpen) {
+    if (playlistToggel_isOpen) {
         playlist.style.display = 'none'
-        playlistTogge_isOpen = false
+        playlistToggel_isOpen = false
     }
     else {
         playlist.style.display = 'flex'
-        playlistTogge_isOpen = true
+        playlistToggel_isOpen = true
     }
 })
 
@@ -61,7 +61,7 @@ const song_details = {
 
 
 songs.forEach((song) => {
-    song.addEventListener('click', () => {
+    song.addEventListener('click', async () => {
         let id = song.getAttribute('id')
         let details = song_details[id]
         console.log(id)
@@ -70,5 +70,21 @@ songs.forEach((song) => {
         main.style.backgroundSize = `cover`
 
         songInfoDiv.innerHTML = `<img src="${details.album_cover}" alt="">`
+
+
+        if (window.visualizerAudio?.loadTrack) {
+            await window.visualizerAudio.loadTrack(details.track, true)
+        }
+        
+        isPlaying = window.visualizerAudio.isPlaying()
+
+        if (isPlaying) {
+            playbackBtn.innerHTML = `<i class="fa-solid fa-pause"></i>`
+            isPlaying = false
+        }
+        else {
+            playbackBtn.innerHTML = `<i class="fa-solid fa-play"></i>`
+            isPlaying = true
+        }
     })
 })

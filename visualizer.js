@@ -144,6 +144,31 @@ function windowResized() {
 
 
 window.visualizerAudio = {
+    async loadTrack(trackURL, autoplay = true) {
+        if (!trackURL) return
+
+        await userStartAudio()
+        
+        if (song && song.isPlaying()) {
+            song.stop()
+        }
+
+        particles = []
+
+        const nextSong = await loadSound(trackURL)
+        song = nextSong
+
+        if (fft) {
+            fft.setInput(song)
+        }
+
+        if (autoplay) {
+            song.play()
+            loop()
+        }
+
+    },
+
     play() {
         if (!song) {
             return
