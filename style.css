@@ -5,6 +5,7 @@
     margin: 0;
     padding: 0;
     box-sizing: border-box;
+
 }
 
 
@@ -12,11 +13,12 @@ body {
     width: 100%;
     height: 100vh;
     overflow: hidden;
-
+    
     /* display: flex; */
     /* flex-direction: column; */
-
+    
     background-color: cornflowerblue;
+    font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
 }
 
 
@@ -92,6 +94,71 @@ main {
     border-radius: 8px;
 
     display: flex;
+    flex-direction: column;
+    padding: 1rem 0.75rem;
 
-    display: none;
+    /* display: none; */
+}
+
+#playlist .song {
+    display: flex;
+    /* border: 2px solid black; */
+    /* padding: 0.5rem; */
+    height: 3rem;
+}
+
+#playlist .song .album-cover {
+    max-width: 20%;
+    width: 3rem;
+    background-color: aquamarine;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    border-radius: 3px;
+    overflow: hidden;
+}
+
+#playlist .song .album-cover img {
+    width: 3rem;
+    height: 3rem;
+    background-color: purple;
+}
+
+#playlist .song .album-desc {
+    width: 75%;
+    flex-grow: 1;
+    /* background-color: antiquewhite; */
+
+    display: flex;
+    flex-direction: column;
+    align-items: baseline;
+    justify-content: center;
+    gap: 0.15rem;
+
+    padding-left: 0.75rem;
+}
+
+#playlist .song .album-desc h3 {
+    text-transform: uppercase;
+    font-size: 1rem;
+}
+
+#playlist .song .album-desc p {
+    font-size: 0.8rem;
+    text-transform: capitalize;
+    color: rgb(91, 89, 89);
+}
+
+.song-divider {
+    margin: 0 auto;
+    margin-top: 1rem;
+    margin-bottom: 1rem;
+
+    width: 95%;
+    height: 2px;
+    background-color: black;
+
+    flex-shrink: 0;
 }

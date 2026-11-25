@@ -4,8 +4,8 @@ const playbackBtn = document.getElementById('playback-btn')
 const playlistToggle = document.getElementById('playlist-toggle')
 const playlistContainer = document.getElementById('playlist')
 
-console.log(playbackBtn)
-console.log(playlistToggle)
+// console.log(playbackBtn)
+// console.log(playlistToggle)
 
 // let isPlaying = false
 playbackBtn.addEventListener('click', () => {
